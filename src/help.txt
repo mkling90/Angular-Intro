@@ -1,0 +1,20 @@
+Getting started
+1. Create application folder
+2. Add package definition and config files
+3. Install packages
+4. Create app's Angula Module
+5. Create main.ts file
+6. Create host Web page page (index.html)
+OR
+ (github.com/angular/quickstart) -> to get started quickly
+ OR
+ angular CLI to generate setup files (recommended)
+
+Commands
+npm -install  (install all the dependencies in the package.json file)
+
+What is a Component?
+Component = Template + Class + Metadata
+
+Twitter Bootstrap styling framework:
+http://getbootstrap.com

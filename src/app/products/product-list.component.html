@@ -1,0 +1,66 @@
+<!-- class uses bootstrap styling -->
+<div class="card">
+    <div class='card-header'>
+        {{pageTitle}}
+    </div>
+    <div class='card-text'>
+        <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <!-- ngModel for 2-way binding to a property -->
+                <!-- Need to import FormsModule to use -->
+                <input [(ngModel)]='listFilter' 
+                    type='text' />
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-3'>
+                <h4>Filtered by: {{listFilter}}</h4>
+            </div>
+        </div>
+        <!-- ngIf and ngFor agnular directives -->
+        <!--  ngIf - if the expression evaluated to false, the element and its children are removed -->
+        <div  class='table-responsive'>
+            <table class='table'
+                    *ngIf='products && products.length'>
+                <thead>
+                    <tr>
+                        <th>
+                            <!-- event handling -->
+                            <button class='btn btn-primary'
+                             (click)='toggleImage()'  >
+                               <!-- interprolation to use javascript with variables-->
+                               {{showImage ? 'Hide' : 'Show'}} Image
+                            </button>
+                        </th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Available</th>
+                        <th>Price</th>
+                        <th>5 Star Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--  ngFor repeats a block of the dom tree for each item in the list -->
+                    <tr *ngFor='let product of products'>
+                        <td>
+                            <!-- Use property binding for image instead of interpolation  -->
+                            <img *ngIf=showImage
+                             [src] = 'product.imageUrl'
+                             [title] = 'product.productName' 
+                             [style.width.px] = 'imageWidth'
+                             [style.margin.px] = 'imageMargin' />
+                        </td>
+                        <!-- Templated properties from the ProductListComponent class -->
+                        <td>{{ product.productName }}</td>
+                        <!-- using a pipe to transform the text -->
+                        <td>{{ product.productCode | lowercase }}</td>
+                        <td>{{ product.releaseDate }}</td>
+                        <td>{{ product.price | currency }}</td>
+                        <td>{{ product.starRating }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

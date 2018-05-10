@@ -1,19 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';  // for 2 way binding ngFor
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './products/product-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProductListComponent
+    AppComponent
   ],
-  // 3rd party and angular modules go in imports
   imports: [
-    BrowserModule,
-    FormsModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
