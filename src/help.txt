@@ -15,6 +15,14 @@ npm -install  (install all the dependencies in the package.json file)
 
 What is a Component?
 Component = Template + Class + Metadata
+Component Lifecycle : 
+Create -> Render -> Create/Render children -> process changes -> Destroy
+Nested components can be used as either a directive, or as a routing target
+Pass data to Nested using @Input
+Raise event using @Output
 
 Twitter Bootstrap styling framework:
 http://getbootstrap.com
+
+Filtering:  
+Recommended to be done within the component itself (not a custom pipe)
