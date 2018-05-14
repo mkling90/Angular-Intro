@@ -8,6 +8,7 @@ import { ProductService } from './product.service';
     styleUrls: ['./product-list.component.css'] // encapsulate unique style for component
 })
 export class ProductListComponent implements OnInit {
+    errorMessage: string;
     pageTitle = 'Product Listing';
     imageWidth = 50;
     imageMargin = 2;
@@ -66,8 +67,21 @@ export class ProductListComponent implements OnInit {
     // OnInit component initialization, retrieve data, etc..
     ngOnInit() {
         // init, happens after constructor
-        this.products = this._productService.getProducts();
-        this.filteredProducts = this.products;
+        // during hardcoding
+        // this.products = this._productService.getProducts();
+
+        // after http implemented
+        // subscribe funtion takes a valueFn and an errorFn.
+        // First function is the action to take when an item is returned -> in this case, the array of products
+        // observables don't emit values until the subscribe is called
+        this._productService.getProducts()
+            .subscribe(p => {
+                this.products = p;
+                this.filteredProducts = this.products;
+            },
+            error => this.errorMessage = <any>error) ;
+        // after async need to move this into subscribe function
+        // this.filteredProducts = this.products;
     }
 
     // bind to the event notification

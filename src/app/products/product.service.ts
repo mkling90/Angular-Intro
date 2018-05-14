@@ -4,12 +4,39 @@
 // which will then generate an instance that can be injected if defined as a dependency
 // Also need to register a provider in component (injectable to component) or module (injectable everywhere)
 
+
 import { Injectable } from '@angular/core';
 import { IProduct } from './products';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http'; // for http service encapsulation (add HttpClientModule to AppModule)
+import { Observable } from 'rxjs';
+// import {do} from 'rxjs/operators';
+ import 'rxjs/add/observable/throw';
+ import 'rxjs/add/operator/catch';
+ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class ProductService {
     // encapsulate data retrieval
+    // Observables help manage asynchronous data coming from http requests, treat events as collection
+    // An array whose items arrive asynchronously over time -> use RxJS (Reactive Extension)
+    // private _productUrl = 'www.thisService.com/api/products'; -> when you have a valid url
+    private _productUrl = './api/products/products.json';  // for test purposes
+    constructor (private _http: HttpClient) {}
+
+    getProducts(): Observable<IProduct[]> {
+        // Http calls return Observable arrays, need to subsribe to it
+        return this._http.get<IProduct[]>(this._productUrl) // set the generic parameter <> to cast return type
+             .do(data => console.log('All: ' + JSON.stringify(data)))
+             .catch(this.handleError); // exception handling
+    }
+
+    // Exception handling
+    private handleError(err: HttpErrorResponse) {
+        console.log(err.message);
+        return Observable.throw(err.message);
+    }
+
+    /*  --> Old hard coded method
     getProducts(): IProduct[] {
         return [
             {
@@ -21,27 +48,8 @@ export class ProductService {
                 'price': 32.99,
                 'starRating': 4.2,
                 'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png'
-            },
-            {
-                'productId': 5,
-                'productName': 'Hammer',
-                'productCode': 'TBX-0048',
-                'releaseDate': 'May 21, 2016',
-                'description': 'Curved claw steel hammer',
-                'price': 8.9,
-                'starRating': 4.8,
-                'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png'
-            },
-            {
-                'productId': 10,
-                'productName': 'Video Game Controller',
-                'productCode': 'GMG-0042',
-                'releaseDate': 'October 15, 2015',
-                'description': 'Standard two-button video game controller',
-                'price': 35.95,
-                'starRating': 2.6,
-                'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
             }
         ];
     }
+    */
 }
