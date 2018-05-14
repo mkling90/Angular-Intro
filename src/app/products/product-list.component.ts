@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './products'; // need to import to use
+import { ProductService } from './product.service';
 
 @Component({
     selector: 'app-products', // pick a directive to be used in app component
@@ -22,6 +23,9 @@ export class ProductListComponent implements OnInit {
     }
     // seperate variable to hold filtered data so we don't lose original data
     filteredProducts: IProduct[];
+    products: IProduct[];
+    /*
+    hard coded, remove to get from service instead
     products: IProduct[] =  [
         {
             'productId': 2,
@@ -44,9 +48,9 @@ export class ProductListComponent implements OnInit {
             'imageUrl': 'http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png'
         }
     ];
-    constructor() {
-        // initialize variables
-        this.filteredProducts = this.products;
+    */
+    // service can be injected here if is has been registered as provider with the parent component
+    constructor(private _productService: ProductService) {
     }
 
     performFilter(filterBy: string): IProduct[] {
@@ -61,6 +65,9 @@ export class ProductListComponent implements OnInit {
     }
     // OnInit component initialization, retrieve data, etc..
     ngOnInit() {
+        // init, happens after constructor
+        this.products = this._productService.getProducts();
+        this.filteredProducts = this.products;
     }
 
     // bind to the event notification

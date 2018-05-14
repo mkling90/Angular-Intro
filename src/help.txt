@@ -26,3 +26,6 @@ http://getbootstrap.com
 
 Filtering:  
 Recommended to be done within the component itself (not a custom pipe)
+
+Building a Service:
+Create a service Class, register as a provider in the component or module, then inject in constructor
