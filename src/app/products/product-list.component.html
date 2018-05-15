@@ -52,7 +52,12 @@
                              [style.margin.px] = 'imageMargin' />
                         </td>
                         <!-- Templated properties from the ProductListComponent class -->
-                        <td>{{ product.productName }}</td>
+                        <!-- <td>{{ product.productName }}</td>  (before anchor tag and link to detail page) -->
+                        <!-- for routerLink, first argument is the string path of route, second is the parameters -->
+                        <td><a [routerLink]= "['/products', product.productId]">
+                            {{ product.productName }}
+                            </a>
+                        </td> 
                         <!-- using a pipe to transform the text -->
                         <td>{{ product.productCode | lowercase | convertToSpaces: '-'}}</td>
                         <td>{{ product.releaseDate }}</td>

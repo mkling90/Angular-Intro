@@ -29,3 +29,10 @@ Recommended to be done within the component itself (not a custom pipe)
 
 Building a Service:
 Create a service Class, register as a provider in the component or module, then inject in constructor
+
+Routing:
+- no selector needed
+- Configure routes (Define base element, add routermodule, add each route to routemodule)
+- Tie routes to actions (Add routerLink directive as attrribute in a template, bind to a link parameters array)
+- Place the view (specifify is host components view)
+- Guards can test CanActivate, CanDeactivate, Resolve, and CanLoad

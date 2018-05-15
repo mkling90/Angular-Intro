@@ -1,0 +1,13 @@
+<div class='panel panel-primary' *ngIf='product'>
+  <div class='panel-heading'>
+      <!-- to prevent undefined error = safe navigation operator  product?.productName 
+       Does not always help(two waybinding) ngIf at a parent level usually a better option -->
+      {{pageTitle + ': ' + product.productName}}
+  </div>
+  <div class='card'>
+    <!-- event binding to bind the 'onBack()' method to the click event -->
+      <a class='btn btn-primary' (click)='onBack()' style='width:80px'>
+          <i class='glyphicon glyphicon-chevron-left'></i> Back
+      </a>
+  </div>
+</div>
