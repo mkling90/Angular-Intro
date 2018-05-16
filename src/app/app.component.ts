@@ -7,7 +7,8 @@ import { ProductService } from './products/product.service';
   selector: 'app-root', // Directive name used in html
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ProductService]  // register the service as a provider so the child components can inject it
+  // (removed after moving to the product module)
+  // providers: [ProductService]  // register the service as a provider so the child components can inject it
 })
 
 // Component class

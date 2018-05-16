@@ -21,6 +21,16 @@ Nested components can be used as either a directive, or as a routing target
 Pass data to Nested using @Input
 Raise event using @Output
 
+What is a Module?
+Instead of just one large AppModule, you can organize the app with smaller modules (class with @ngModule)
+Create Feature Modules, Shared Module - partition application into logical groupings
+Every component, etc.. belongs to a module, can register services, export functionality,
+Export any component if nother components need it.  Can re-export modules to re-export thier shared
+never export a service - they get shared automatically when registered as injectable with parent component
+Importing a module makes any exported components available.  Imports are not inherited
+When using providers, a service provider added is registered at the root, so is availabel everywhere
+Service should not be added to the providers array of shared module - build a core module for services, and import it once to appmodule
+
 Twitter Bootstrap styling framework:
 http://getbootstrap.com
 
